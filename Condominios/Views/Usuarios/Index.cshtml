@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Condominios.BLL.Models.Usuario>
+@using Condominios.BLL.Models
+
+@{
+    ViewData["Title"] = "Listagem de Moradores Cadastrados";
+}
+
+<div class="tabelas">
+    <div class="collection-header">
+        <div class="row">
+            <div class="col s10">
+                <h6 class="text-white">Moradores cadastrados</h6>
+            </div>
+            <div class="col s2">
+
+            </div>
+        </div>
+        <div class="collection-item">
+            <table class="striped highlight">
+                <thead>
+                    <tr>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            CPF
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Telefone
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CPF)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+
+                            @if (item.Status == StatusConta.Analisando)
+                            {
+                                <td>
+                                    <span class="new badge purple darken-3" id="@item.Id">@Html.DisplayFor(modelItem => item.Status)</span>
+                                </td>
+                                <td class="@item.Id">
+                                    <a class="btn-floating blue darken-4 btnAprovar" onclick="AprovarUsuario('@item.Id', '@item.UserName')"><i class="material-icons">thumb_up</i></a>
+                                    <a class="btn-floating red darken-4 btnReprovar" onclick="RerpovarUsuario('@item.Id', '@item.UserName')"><i class="material-icons">thumb_down</i></a>
+                                </td>
+                            }
+                            else if (item.Status == StatusConta.Aprovado)
+                            {
+                                <td>
+                                    <span class="new badge green darken-3" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                                </td>
+
+                                <td>
+                                    <a class="btn-floating blue darken-4 tooltip" asp-controller="Usuarios" asp-action="GerenciarUsuario" asp-route-usuarioId="@item.Id" asp-route-name="@item.UserName" data-position="right" data-tooltip="Gerenciar usuário"><i class="material-icons">group</i></a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="new badge orange darken-3" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/OperacoesUsuario.js"></script>
+}
