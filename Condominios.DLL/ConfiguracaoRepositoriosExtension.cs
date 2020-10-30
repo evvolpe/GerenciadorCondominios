@@ -1,5 +1,6 @@
 ﻿using Condominios.DAL.Interface;
 using Condominios.DAL.Repositorios;
+using GerenciadorCondominios.DAL.Repositorios;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Condominios.DAL
 
             services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddTransient<IFuncaoRepositorio, FuncaoRepositorio>();
+            services.AddTransient<IVeiculoRepositorio, VeiculoRepositorio>();
         }
     }
 }

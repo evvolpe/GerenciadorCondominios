@@ -217,7 +217,7 @@ namespace Condominios.Controllers
                 FuncaoUsuarioViewModel model = new FuncaoUsuarioViewModel
                 {
                     FuncaoId = funcao.Id,
-                    Nome = funcao.Descricao,
+                    Nome = funcao.Name,
                     Descricao = funcao.Descricao
                 };
 
