@@ -18,6 +18,9 @@ namespace Condominios.DAL
             services.AddTransient<IFuncaoRepositorio, FuncaoRepositorio>();
             services.AddTransient<IVeiculoRepositorio, VeiculoRepositorio>();
             services.AddTransient<IEventoRepositorio, EventoRepositorio>();
+            services.AddTransient<IServicoRepositorio, ServicoRepositorio>();
+            services.AddTransient<IServicoPredioRepositorio, ServicoPredioRepositorio>();
+            services.AddTransient<IHistoricoRecursosRepositorio, HistoricoRecursosRepositorio>();
         }
     }
 }
